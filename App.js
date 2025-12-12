@@ -33,7 +33,9 @@ const App = () => {
       </View>
       <View style={styles.goalsContainer}>
         {courseGoals.map((goal, _) => (
-          <Text key={_}>{goal}</Text>
+          <View key={_} style={styles.goalItem}>
+            <Text style={styles.goalText}>{goal}</Text>
+          </View>
         ))}
       </View>
     </View>
@@ -56,6 +58,7 @@ const styles = StyleSheet.create({
     paddingBottom: 24,
     borderBottomWidth: 1,
     borderBottomColor: "#ccc",
+    marginBottom: 24,
   },
   textInput: {
     borderWidth: 1,
@@ -65,6 +68,15 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   goalsContainer: {
-    flex: 3,
+    flex: 5,
+  },
+  goalItem: {
+    padding: 8,
+    margin: 8,
+    backgroundColor: "blue",
+    borderRadius: 6,
+  },
+  goalText: {
+    color: "white",
   },
 });
