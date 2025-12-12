@@ -1,50 +1,26 @@
-import { useEffect, useState } from "react";
-import {
-  Button,
-  FlatList,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { useState } from "react";
+import { FlatList, StyleSheet, View } from "react-native";
 import GoalItem from "./components/GoalItem";
+import GoalInput from "./components/GoalInput";
 
 const App = () => {
-  const [enteredGoalText, setEnteredGoalText] = useState("");
   const [courseGoals, setCourseGoals] = useState([]);
 
-  const goalInputHandler = (e) => {
-    setEnteredGoalText(e);
-  };
-
-  const addGoalHandler = () => {
-    if (enteredGoalText === "") return;
+  const addGoalHandler = (newGoal) => {
+    if (newGoal === "") return;
     setCourseGoals((prev) => [
       ...prev,
       {
-        text: enteredGoalText,
+        text: newGoal,
         id: `${Date.now()}`,
       },
     ]);
-    setEnteredGoalText("");
   };
-
-  useEffect(() => {
-    console.log("goals", courseGoals);
-  }, [courseGoals]);
 
   return (
     <View style={styles.appContainer}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          value={enteredGoalText}
-          onChangeText={goalInputHandler}
-          style={styles.textInput}
-          placeholder="Your Course Goal"
-          placeholderTextColor="#ccc"
-        />
-        <Button onPress={addGoalHandler} title="Add Goal" />
-      </View>
+      <GoalInput onAddGoalHandler={addGoalHandler} />
+
       <View style={styles.goalsContainer}>
         <FlatList
           alwaysBounceVertical={false}
