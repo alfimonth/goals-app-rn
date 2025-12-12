@@ -7,6 +7,7 @@ import {
   TextInput,
   View,
 } from "react-native";
+import GoalItem from "./components/GoalItem";
 
 const App = () => {
   const [enteredGoalText, setEnteredGoalText] = useState("");
@@ -48,11 +49,7 @@ const App = () => {
         <FlatList
           alwaysBounceVertical={false}
           data={courseGoals}
-          renderItem={({ item }) => (
-            <View style={styles.goalItem}>
-              <Text style={styles.goalText}>{item.text}</Text>
-            </View>
-          )}
+          renderItem={(data) => <GoalItem item={data.item} />}
           keyExtractor={(item) => item.id}
         />
       </View>
@@ -87,14 +84,5 @@ const styles = StyleSheet.create({
   },
   goalsContainer: {
     flex: 5,
-  },
-  goalItem: {
-    padding: 8,
-    margin: 8,
-    backgroundColor: "blue",
-    borderRadius: 6,
-  },
-  goalText: {
-    color: "white",
   },
 });
