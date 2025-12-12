@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Button,
+  FlatList,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 
 const App = () => {
   const [enteredGoalText, setEnteredGoalText] = useState("");
@@ -11,7 +18,13 @@ const App = () => {
 
   const addGoalHandler = () => {
     if (enteredGoalText === "") return;
-    setCourseGoals((prev) => [...prev, enteredGoalText]);
+    setCourseGoals((prev) => [
+      ...prev,
+      {
+        text: enteredGoalText,
+        id: `${Date.now()}`,
+      },
+    ]);
     setEnteredGoalText("");
   };
 
@@ -32,11 +45,16 @@ const App = () => {
         <Button onPress={addGoalHandler} title="Add Goal" />
       </View>
       <View style={styles.goalsContainer}>
-        {courseGoals.map((goal, _) => (
-          <View key={_} style={styles.goalItem}>
-            <Text style={styles.goalText}>{goal}</Text>
-          </View>
-        ))}
+        <FlatList
+          alwaysBounceVertical={false}
+          data={courseGoals}
+          renderItem={({ item }) => (
+            <View style={styles.goalItem}>
+              <Text style={styles.goalText}>{item.text}</Text>
+            </View>
+          )}
+          keyExtractor={(item) => item.id}
+        />
       </View>
     </View>
   );
