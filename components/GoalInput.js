@@ -30,11 +30,6 @@ const GoalInput = ({ onAddGoalHandler }) => {
 export default GoalInput;
 
 const styles = StyleSheet.create({
-  appContainer: {
-    flex: 1,
-    paddingTop: 50,
-    paddingHorizontal: 16,
-  },
   inputContainer: {
     flex: 1,
     flexDirection: "row",
@@ -51,8 +46,5 @@ const styles = StyleSheet.create({
     width: "70%",
     marginRight: 8,
     padding: 8,
-  },
-  goalsContainer: {
-    flex: 5,
   },
 });

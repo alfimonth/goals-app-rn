@@ -17,6 +17,11 @@ const App = () => {
     ]);
   };
 
+  const deleteGoalHandler = (id) => {
+    if (!id) return;
+    setCourseGoals((prev) => prev.filter((item) => item.id !== id));
+  };
+
   return (
     <View style={styles.appContainer}>
       <GoalInput onAddGoalHandler={addGoalHandler} />
@@ -25,7 +30,9 @@ const App = () => {
         <FlatList
           alwaysBounceVertical={false}
           data={courseGoals}
-          renderItem={(data) => <GoalItem item={data.item} />}
+          renderItem={(data) => (
+            <GoalItem item={data.item} onClick={deleteGoalHandler} />
+          )}
           keyExtractor={(item) => item.id}
         />
       </View>
@@ -40,23 +47,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 50,
     paddingHorizontal: 16,
-  },
-  inputContainer: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingBottom: 24,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
-    marginBottom: 24,
-  },
-  textInput: {
-    borderWidth: 1,
-    borderColor: "#ccc",
-    width: "70%",
-    marginRight: 8,
-    padding: 8,
   },
   goalsContainer: {
     flex: 5,
