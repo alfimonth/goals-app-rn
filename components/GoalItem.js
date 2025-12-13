@@ -30,6 +30,9 @@ const styles = StyleSheet.create({
   androidRipple: {
     color: "lightblue",
   },
+  goalText: {
+    color: "darkslategray",
+  },
   itemPressed: {
     opacity: 0.5,
   },
