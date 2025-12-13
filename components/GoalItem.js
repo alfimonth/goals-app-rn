@@ -24,14 +24,11 @@ const styles = StyleSheet.create({
   goalItem: {
     padding: 8,
     margin: 8,
-    backgroundColor: "blue",
+    backgroundColor: "lightskyblue",
     borderRadius: 6,
   },
-  goalText: {
-    color: "white",
-  },
   androidRipple: {
-    color: "red",
+    color: "lightblue",
   },
   itemPressed: {
     opacity: 0.5,
