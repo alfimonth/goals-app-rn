@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, StyleSheet, TextInput, View } from "react-native";
 
-const GoalInput = ({ onAddGoalHandler }) => {
+const GoalInput = ({ onAddGoalHandler, onClose }) => {
   const [enteredGoalText, setEnteredGoalText] = useState("");
 
   const goalInputHandler = (e) => {
@@ -22,7 +22,10 @@ const GoalInput = ({ onAddGoalHandler }) => {
         placeholder="Your Course Goal"
         placeholderTextColor="#ccc"
       />
-      <Button onPress={addGoalHandler} title="Add Goal" />
+      <View style={styles.buttonContainer}>
+        <Button onPress={addGoalHandler} title="Add Goal" />
+        <Button onPress={onClose} title="Cancel" />
+      </View>
     </View>
   );
 };
@@ -32,19 +35,22 @@ export default GoalInput;
 const styles = StyleSheet.create({
   inputContainer: {
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "center",
     paddingBottom: 24,
     borderBottomWidth: 1,
     borderBottomColor: "#ccc",
     marginBottom: 24,
+    paddingHorizontal: 16,
   },
   textInput: {
+    width: "100%",
     borderWidth: 1,
     borderColor: "#ccc",
-    width: "70%",
     marginRight: 8,
     padding: 8,
+  },
+  buttonContainer: {
+    flexDirection: "row",
   },
 });

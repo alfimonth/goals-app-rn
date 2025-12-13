@@ -6,11 +6,15 @@ const GoalItem = ({ item, onClick }) => {
   };
 
   return (
-    <Pressable onPress={deleteHandler}>
-      <View style={styles.goalItem}>
+    <View style={styles.goalItem}>
+      <Pressable
+        android_ripple={styles.androidRipple}
+        onPress={deleteHandler}
+        style={({ pressed }) => pressed && styles.itemPressed}
+      >
         <Text style={styles.goalText}>{item.text}</Text>
-      </View>
-    </Pressable>
+      </Pressable>
+    </View>
   );
 };
 
@@ -25,5 +29,11 @@ const styles = StyleSheet.create({
   },
   goalText: {
     color: "white",
+  },
+  androidRipple: {
+    color: "red",
+  },
+  itemPressed: {
+    opacity: 0.5,
   },
 });
